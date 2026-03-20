@@ -614,6 +614,7 @@
       text-decoration: none;
       cursor: pointer;
       opacity: 0;
+      pointer-events: none;
       transform: translateY(10px);
       transition: opacity 0.3s, transform 0.3s, background 0.2s;
       z-index: 50;
@@ -621,6 +622,7 @@
 
     .back-to-top.visible {
       opacity: 1;
+      pointer-events: auto;
       transform: translateY(0);
     }
 
