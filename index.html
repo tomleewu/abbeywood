@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abbey Wood | Marketing Professional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --peach:        #F2B59A;
+      --peach-light:  #FCEADE;
+      --peach-mid:    #EDA086;
+      --peach-dark:   #C97B5E;
+      --cream:        #FDFAF7;
+      --off-white:    #F7F4F0;
+      --charcoal:     #282828;
+      --mid-grey:     #5C5C5C;
+      --light-grey:   #A8A8A8;
+      --border:       #E8E0D8;
+      --font-serif:   'Playfair Display', Georgia, serif;
+      --font-sans:    'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 4rem;
+      background: rgba(253, 250, 247, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-brand {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--mid-grey);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--peach-dark); }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 5rem;
+      background: var(--off-white);
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 4rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--peach-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 4vw, 4.2rem);
+      line-height: 1.35;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--mid-grey);
+      font-weight: 400;
+    }
+
+    .hero-headline strong {
+      font-weight: 700;
+    }
+
+    .hero-highlight {
+      display: inline;
+      background: var(--peach-light);
+      padding: 0.05em 0.15em;
+      border-radius: 3px;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--mid-grey);
+      font-weight: 300;
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--charcoal);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--peach-dark); transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      border: 1.5px solid var(--charcoal);
+      color: var(--charcoal);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--peach-dark);
+      color: var(--peach-dark);
+      transform: translateY(-1px);
+    }
+
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    /* Placeholder when no image */
+    .hero-image-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 600px;
+      background: linear-gradient(135deg, var(--peach-light) 0%, var(--peach) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      color: var(--peach-dark);
+    }
+
+    .hero-image-placeholder svg {
+      width: 80px;
+      height: 80px;
+      opacity: 0.5;
+    }
+
+    .hero-image-placeholder p {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Section base ── */
+    section { padding: 6rem 4rem; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--peach-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--charcoal);
+      margin-bottom: 3rem;
+    }
+
+    .section-title strong { font-weight: 700; }
+
+    /* ── About ── */
+    #about {
+      background: var(--cream);
+      max-width: 100%;
+    }
+
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-bio {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--mid-grey);
+    }
+
+    .about-bio strong { color: var(--charcoal); font-weight: 600; }
+
+    .skills-area { margin-top: 0; }
+
+    .skills-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--light-grey);
+      margin-bottom: 1.5rem;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .skill-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1.25rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skill-row:first-child { border-top: 1px solid var(--border); }
+
+    .skill-category {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--peach-dark);
+      min-width: 110px;
+      flex-shrink: 0;
+    }
+
+    .skill-items {
+      font-size: 0.9rem;
+      color: var(--mid-grey);
+      line-height: 1.5;
+    }
+
+    /* ── Experience ── */
+    #experience {
+      background: var(--off-white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .experience-inner {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.6rem;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 3.5rem;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2.4rem;
+      top: 0.55rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--peach);
+      border: 2px solid var(--peach-dark);
+    }
+
+    .timeline-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-date {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--peach-dark);
+      white-space: nowrap;
+    }
+
+    .timeline-company {
+      font-size: 0.9rem;
+      color: var(--charcoal);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .timeline-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .timeline-desc {
+      font-size: 0.95rem;
+      color: var(--mid-grey);
+      line-height: 1.8;
+    }
+
+    .timeline-desc ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 0.5rem;
+    }
+
+    .timeline-desc ul li {
+      position: relative;
+      padding-left: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-desc ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--peach);
+      font-size: 0.8rem;
+    }
+
+    .timeline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+
+    .timeline-tag {
+      padding: 0.25rem 0.75rem;
+      background: var(--peach-light);
+      color: var(--peach-dark);
+      font-size: 0.75rem;
+      font-weight: 500;
+      border-radius: 2px;
+      letter-spacing: 0.03em;
+    }
+
+    /* Education strip */
+    .education-strip {
+      margin-top: 4rem;
+      padding: 2rem 2.5rem;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .edu-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--peach-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--peach-dark);
+      font-size: 1.3rem;
+    }
+
+    .edu-school {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--peach-dark);
+      margin-bottom: 0.2rem;
+    }
+
+    .edu-degree {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    .edu-year {
+      font-size: 0.85rem;
+      color: var(--light-grey);
+      margin-top: 0.2rem;
+    }
+
+    /* ── Contact ── */
+    #contact {
+      background: var(--cream);
+    }
+
+    .contact-centered {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .contact-tagline {
+      font-size: 1rem;
+      color: var(--mid-grey);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-cta-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-cta-link {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.25rem 1.5rem;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      text-decoration: none;
+      color: var(--charcoal);
+      background: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+
+    .contact-cta-link:hover {
+      border-color: var(--peach);
+      box-shadow: 0 4px 16px rgba(242, 181, 154, 0.18);
+      transform: translateY(-2px);
+    }
+
+    .contact-cta-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--peach-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--peach-dark);
+      flex-shrink: 0;
+    }
+
+    .contact-cta-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      flex: 1;
+    }
+
+    .contact-cta-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--peach-dark);
+    }
+
+    .contact-cta-value {
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      font-weight: 400;
+    }
+
+    .contact-cta-arrow {
+      font-size: 1.2rem;
+      color: var(--light-grey);
+      transition: color 0.2s;
+    }
+
+    .contact-cta-link:hover .contact-cta-arrow { color: var(--peach-dark); }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.5);
+      padding: 2rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+    }
+
+    .footer-brand {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .footer-social a:hover {
+      background: var(--peach);
+      color: #fff;
+    }
+
+    /* ── Back to Top ── */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 0.65rem 1.25rem;
+      background: var(--peach-light);
+      color: var(--peach-dark);
+      border: 1px solid var(--peach);
+      border-radius: 2px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s, transform 0.3s, background 0.2s;
+      z-index: 50;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      background: var(--peach);
+      color: #fff;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--peach);
+      margin-bottom: 2rem;
+    }
+
+    /* ── Fade-in on scroll ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-text { padding: 7rem 1.5rem 3rem; }
+      .hero-image { min-height: 60vw; order: -1; }
+      .hero-image-placeholder { min-height: 60vw; }
+
+      section { padding: 4rem 1.5rem; }
+
+      .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero-headline { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav>
+    <a href="#hero" class="nav-brand">Abbey Wood</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section id="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Strategic Communicator &amp; Marketing Professional</p>
+      <h1 class="hero-headline">
+        I'm Abbey Wood.<br />
+        <em>Making</em> your brand's<br />
+        story<br /><span class="hero-highlight"><strong>unforgettable.</strong></span>
+      </h1>
+      <p class="hero-sub">
+        Senior Marketing Coordinator driving results through multi-channel campaigns, strategic communications, and process innovation — based in Denver, CO.
+      </p>
+      <div class="hero-ctas">
+        <a href="#experience" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-ghost">Get In Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <!--
+        REPLACE THIS PLACEHOLDER with your portrait:
+        <img src="your-photo.jpg" alt="Abbey Wood" />
+        Then remove the .hero-image-placeholder div below.
+      -->
+      <div class="hero-image-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+        </svg>
+        <p>Your portrait photo here</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About ── -->
+  <section id="about">
+    <div class="about-inner fade-in">
+      <div>
+        <p class="section-label">About Me</p>
+        <h2 class="section-title">This is <strong>me</strong></h2>
+        <div class="divider"></div>
+        <p class="about-bio">
+          I'm a <strong>Senior Marketing Coordinator</strong> with experience in <strong>multi-channel campaign management</strong>, <strong>digital marketing</strong>, and <strong>process optimization</strong>. I graduated from the University of Central Oklahoma with my bachelor's in Organizational Communication in 2020.
+          <br /><br />
+          Currently at <strong>2U</strong>, I manage 800+ annual marketing requests across a 250+ partner network — reducing intake time by 83% and cutting rebrand workflows by 30% through smarter processes and AI-assisted tools.
+          <br /><br />
+          I'm passionate about work where strategy meets creativity, and where I can <strong>drive measurable impact</strong> for the brands and teams I serve.
+        </p>
+      </div>
+
+      <div class="skills-area">
+        <p class="skills-label">What I Do</p>
+        <div class="skills-list">
+          <div class="skill-row">
+            <span class="skill-category">Marketing</span>
+            <span class="skill-items">Campaign Management, Content Strategy, Email Marketing, Social Media, Copywriting, SEO</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-category">Analytics</span>
+            <span class="skill-items">Google Analytics, Salesforce, Sprout Social</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-category">CMS &amp; Email</span>
+            <span class="skill-items">WordPress, Contentful, HubSpot, Mailchimp, Constant Contact</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-category">Project Mgmt</span>
+            <span class="skill-items">Jira, Stakeholder Management, Deadline Coordination</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-category">Creative</span>
+            <span class="skill-items">Canva, Brand Alignment, Process Optimization</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Experience ── -->
+  <section id="experience">
+    <div class="experience-inner fade-in">
+      <p class="section-label">Career History</p>
+      <h2 class="section-title">Where I've <strong>been</strong></h2>
+      <div class="divider"></div>
+
+      <div class="timeline">
+
+        <!-- 2U Senior -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">July 2025 — Present</span>
+            <span class="timeline-company">2U</span>
+          </div>
+          <h3 class="timeline-title">Senior Marketing Coordinator</h3>
+          <div class="timeline-desc">
+            <ul>
+              <li>Reduced marketing ticket intake time <strong>83%</strong> (1 hour → 10 minutes) by eliminating redundant questions, autofilling repeat request data, and streamlining form fields.</li>
+              <li>Cut partner rebrand workflow time <strong>30%</strong> (30 days → &lt;21 days) by implementing AI-assisted processes to accelerate information gathering and asset preparation.</li>
+              <li>Manage <strong>800+ annual marketing requests</strong> across a 250+ partner network, ensuring timely execution and alignment with brand and compliance requirements.</li>
+            </ul>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">Process Optimization</span>
+            <span class="timeline-tag">Partner Marketing</span>
+            <span class="timeline-tag">AI-Assisted Workflows</span>
+          </div>
+        </div>
+
+        <!-- 2U Coordinator -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">February 2022 — July 2025</span>
+            <span class="timeline-company">2U</span>
+          </div>
+          <h3 class="timeline-title">Marketing Coordinator</h3>
+          <div class="timeline-desc">
+            <ul>
+              <li>Increased total lead volume <strong>22%</strong> and application conversions <strong>15% YoY</strong> through digital marketing campaigns across web, email, and paid channels.</li>
+              <li>Led website projects from requirements to launch, partnering with creative, web, and compliance teams to deliver consistent UX and brand alignment across university partners.</li>
+              <li>Maintained and optimized website content in WordPress, ensuring accessibility, SEO performance, and compliance standards.</li>
+            </ul>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">Digital Campaigns</span>
+            <span class="timeline-tag">WordPress</span>
+            <span class="timeline-tag">SEO</span>
+            <span class="timeline-tag">Lead Generation</span>
+          </div>
+        </div>
+
+        <!-- JK Moving -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">May 2021 — January 2022</span>
+            <span class="timeline-company">JK Moving Services</span>
+          </div>
+          <h3 class="timeline-title">Marketing Coordinator</h3>
+          <div class="timeline-desc">
+            <ul>
+              <li>Executed multi-channel marketing campaigns across email, web, and social, ensuring consistent messaging and brand alignment.</li>
+              <li>Produced and distributed a monthly mobility industry newsletter in HubSpot, improving click-through rate <strong>4%</strong> through analytics-driven optimization.</li>
+              <li>Managed social media strategy end-to-end — content, graphics, scheduling, and analytics — using Canva and Sprout Social, increasing Instagram engagement <strong>6%</strong> in four months.</li>
+            </ul>
+          </div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">HubSpot</span>
+            <span class="timeline-tag">Social Media</span>
+            <span class="timeline-tag">Email Marketing</span>
+            <span class="timeline-tag">Canva</span>
+          </div>
+        </div>
+
+      </div><!-- /timeline -->
+
+      <!-- Education & Certifications -->
+      <div class="education-strip">
+        <div class="edu-icon">&#127891;</div>
+        <div>
+          <p class="edu-school">University of Central Oklahoma</p>
+          <p class="edu-degree">B.A. in Organizational Communication</p>
+          <p class="edu-year">Graduated 2020</p>
+        </div>
+      </div>
+      <div class="education-strip" style="margin-top: 1rem;">
+        <div class="edu-icon">&#127942;</div>
+        <div>
+          <p class="edu-school">HubSpot Academy</p>
+          <p class="edu-degree">Inbound Marketing Certification</p>
+          <p class="edu-year">Certified 2024</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Contact ── -->
+  <section id="contact">
+    <div class="contact-centered fade-in">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Let's <strong>connect</strong></h2>
+      <div class="divider"></div>
+      <p class="contact-tagline">
+        Based in Denver, CO and open to new opportunities. Whether it's a role, a project, or just a conversation — reach out.
+      </p>
+      <div class="contact-cta-links">
+        <a href="mailto:woodabbeyelle@gmail.com" class="contact-cta-link">
+          <span class="contact-cta-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </span>
+          <span class="contact-cta-text">
+            <span class="contact-cta-label">Email</span>
+            <span class="contact-cta-value">woodabbeyelle@gmail.com</span>
+          </span>
+          <span class="contact-cta-arrow">&#8599;</span>
+        </a>
+        <a href="https://www.linkedin.com/in/woodabbey/" target="_blank" rel="noopener" class="contact-cta-link">
+          <span class="contact-cta-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </span>
+          <span class="contact-cta-text">
+            <span class="contact-cta-label">LinkedIn</span>
+            <span class="contact-cta-value">linkedin.com/in/woodabbey</span>
+          </span>
+          <span class="contact-cta-arrow">&#8599;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <span class="footer-brand">Abbey Wood</span>
+    <span>&copy; 2026 &nbsp;·&nbsp; All rights reserved</span>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/in/woodabbey/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+      </a>
+      <a href="mailto:woodabbeyelle@gmail.com" aria-label="Email">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <a href="#hero" class="back-to-top" id="backToTop">Back to Top &#8679;</a>
+
+  <script>
+    // ── Back to top ──
+    const btn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      const nearBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 80;
+      btn.classList.toggle('visible', window.scrollY > 500 && !nearBottom);
+    });
+
+    // ── Smooth scroll ──
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+
+    // ── Scroll fade-ins ──
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+  </script>
+
+</body>
+</html>
